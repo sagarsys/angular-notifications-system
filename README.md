@@ -1,4 +1,14 @@
-# AngularNotificationsSytem
+# angular-notifications-system
+Simple notifications management system using angular2+
+
+## Quick start
+- Clone repo
+- Run the following commands 
+`npm i` 
+`ng serve`
+- Navigate to http://localhost:4200/
+
+---------------------------------------------------------------------------------------
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
