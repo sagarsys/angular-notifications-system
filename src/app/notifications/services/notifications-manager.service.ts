@@ -2,7 +2,7 @@ import { ComponentRef, Injectable } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { Observable } from 'rxjs/internal/Observable';
 import { NotificationsConfigModel } from '../models/notification-config.model';
-import { NotificationsComponent } from '../notifications.component';
+import { NotificationsComponent } from '../components/notifications.component';
 
 @Injectable()
 export class NotificationsManagerService {

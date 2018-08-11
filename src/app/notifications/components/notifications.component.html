@@ -1,0 +1,36 @@
+<div #notifications
+     class="notifications-wrapper"
+     [ngClass]="{
+        'success': data.type === _SUCCESS,
+        'error': data.type === _ERROR,
+        'warning': data.type === _WARN,
+     }"
+>
+  <div class="notification-content">
+    <p class="notification-msg">{{ data.message$ | async }}</p>
+    <ul class="notification-actions" *ngIf="data.actions">
+      <li *ngFor="let action of data.actions">
+        <a *ngIf="action.type === 'link'"
+           class="notification-link"
+           title="{{ action.text$ | async }}"
+           (click)="onClick($event, true)"
+           href="#"
+        >
+          {{ action.text$ | async }}
+        </a>
+        <button *ngIf="action.type === 'button'"
+                class="notification-btn"
+                title="{{ action.text$ | async }}"
+                (click)="onClick($event, true)"
+        >
+          {{ action.text$ | async }}
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="notification-close">
+    <button class="btn-close" (click)="onClose()" title="Close notification" role="button">
+      X
+    </button>
+  </div>
+</div>
