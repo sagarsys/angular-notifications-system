@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NotificationsComponent } from './notifications/components/notifications.component';
-import { NotificationsManagerService } from './notifications/services/notifications-manager.service';
+import { NotificationsService } from './notifications/services/notifications.service';
 import { NotificationsDirective } from './notifications/directives/notifications.directive';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { NotificationsDirective } from './notifications/directives/notifications
   imports: [
     BrowserModule
   ],
-  providers: [NotificationsManagerService],
+  providers: [NotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

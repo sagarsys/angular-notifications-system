@@ -5,7 +5,7 @@ import { NotificationsConfigModel } from '../models/notification-config.model';
 import { NotificationsComponent } from '../components/notifications.component';
 
 @Injectable()
-export class NotificationsManagerService {
+export class NotificationsService {
 
   private _isDisplayed$: Subject<boolean>;
   private _result$: Subject<any>;

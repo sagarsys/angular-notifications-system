@@ -1,6 +1,6 @@
 import { ComponentFactoryResolver, ComponentRef, Directive, ViewContainerRef } from '@angular/core';
 import { UnsubscribeHelper } from '../../shared/helpers/Unsubscribe.helper';
-import { NotificationsManagerService } from '../services/notifications-manager.service';
+import { NotificationsService } from '../services/notifications.service';
 import { NotificationsComponent } from '../components/notifications.component';
 import { NOTIFICATION_ANIM_DURATION, NotificationsConfigModel } from '../models/notification-config.model';
 
@@ -10,7 +10,7 @@ export class NotificationsDirective extends UnsubscribeHelper {
   constructor(
     private viewContainerRef: ViewContainerRef,
     private factoryResolver: ComponentFactoryResolver,
-    private notificationsManagerService: NotificationsManagerService,
+    private notificationsService: NotificationsService,
   ) {
     super();
   }
@@ -33,12 +33,10 @@ export class NotificationsDirective extends UnsubscribeHelper {
       notificationsCompRef.instance.close.subscribe((value: any) => {
         // if user clicks on an action, pass the result before close
         if (value) {
-          this.notificationsManagerService.result = value;
+          this.notificationsService.result = value;
         }
         // wait for animation and destroy notification
-        setTimeout(() => {
-          notificationsCompRef.destroy();
-        }, NOTIFICATION_ANIM_DURATION);
+        setTimeout(() => notificationsCompRef.destroy(), NOTIFICATION_ANIM_DURATION);
       })
     );
     return notificationsCompRef;

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { UnsubscribeHelper } from '../../shared/helpers/Unsubscribe.helper';
 import { NOTIFICATION_ANIM_DURATION, NotificationsActionModel, NotificationsConfigModel } from '../models/notification-config.model';
-import { NotificationsManagerService } from '../services/notifications-manager.service';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   selector: 'app-notifications',
@@ -20,10 +20,7 @@ export class NotificationsComponent extends UnsubscribeHelper implements OnInit 
   public data: NotificationsConfigModel;
   public close: EventEmitter<any>;
 
-  constructor(
-    private notificationsManagerService: NotificationsManagerService,
-    private renderer: Renderer2,
-  ) {
+  constructor(private notificationsService: NotificationsService, private renderer: Renderer2) {
     super();
     this.close = new EventEmitter<any>();
   }
@@ -37,7 +34,7 @@ export class NotificationsComponent extends UnsubscribeHelper implements OnInit 
     this.element.nativeElement.classList.remove('in');
     setTimeout(() => {
       this.close.emit(value);
-      this.notificationsManagerService.isDisplayed = false;
+      this.notificationsService.isDisplayed = false;
     }, NOTIFICATION_ANIM_DURATION);
   }
 
