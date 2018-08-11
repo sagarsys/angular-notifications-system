@@ -1,5 +1,8 @@
 import { Observable } from 'rxjs/internal/Observable';
 
+// if value of css transition duration (ms) is changed --> reflect the change here (& vice versa)
+export const NOTIFICATION_ANIM_DURATION = 200;
+
 export class NotificationsConfigModel {
   type: string;
   message: string;
