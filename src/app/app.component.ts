@@ -4,16 +4,17 @@ import { NotificationsService } from './notifications/services/notifications.ser
 import { NotificationsConfigModel } from './notifications/models/notification-config.model';
 import { NotificationsDirective } from './notifications/directives/notifications.directive';
 import { NotificationsComponent } from './notifications/components/notifications.component';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends UnsubscribeHelper implements AfterViewInit {
 
   @ViewChild(NotificationsDirective) notifications: NotificationsDirective;
+
+  isNotificationsVisible: boolean = false;
 
   constructor(private notificationsService: NotificationsService) {
     super();
@@ -22,6 +23,7 @@ export class AppComponent extends UnsubscribeHelper implements AfterViewInit {
   ngAfterViewInit() {
     this.addSubscription(
       this.notificationsService.isDisplayed$.subscribe((isDisplayed: boolean) => {
+        this.isNotificationsVisible = isDisplayed;
         if (isDisplayed) {
           this.addSubscription(
             this.notificationsService.config$.subscribe((config: NotificationsConfigModel) => {
@@ -31,18 +33,6 @@ export class AppComponent extends UnsubscribeHelper implements AfterViewInit {
         }
       })
     );
-  }
-
-  onClick(event: MouseEvent) {
-    console.log(event);
-    this.notificationsService.isDisplayed = true;
-    this.notificationsService.config = {
-      message: 'Success!',
-      message$: new Observable(),
-      type: 'success',
-      context: 'app',
-      duration: 15000
-    };
   }
 
 }

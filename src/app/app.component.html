@@ -1,6 +1,8 @@
-<section class="wrapper">
+<div class="notifications-anchor" appNotifications></div>
 
-  <div class="notifications-anchor" appNotifications></div>
+<section class="wrapper" [ngStyle]="{
+  transform: isNotificationsVisible ? 'translate3d(0,50px,0)' : 'translate3d(0,0,0)'
+}">
 
   <nav class="main-nav d-flex align-items-center">
     <ul class="container">
@@ -28,10 +30,8 @@
       aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
       molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
 
-    <div class="mt-5">
-      <button class="btn btn-success pt-2 mr-3" (click)="onClick($event)">Show success notification</button>
-      <button class="btn btn-danger" (click)="onClick($event)">Show error notification</button>
-    </div>
+    <app-buttons></app-buttons>
+
   </main>
 
 </section>

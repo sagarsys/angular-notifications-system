@@ -6,7 +6,7 @@ import { NotificationsService } from '../services/notifications.service';
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css'],
+  styleUrls: ['./notifications.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationsComponent extends UnsubscribeHelper implements OnInit {

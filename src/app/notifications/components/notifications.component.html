@@ -1,9 +1,9 @@
 <div #notifications
      class="notifications-wrapper"
      [ngClass]="{
-        'success': data.type === _SUCCESS,
-        'error': data.type === _ERROR,
-        'warning': data.type === _WARN
+        'bg-success': data.type === _SUCCESS,
+        'bg-danger': data.type === _ERROR,
+        'bg-warning': data.type === _WARN
      }"
 >
   <div class="notification-content">
@@ -29,7 +29,7 @@
     </ul>
   </div>
   <div class="notification-close">
-    <button class="btn-close" (click)="onClose()" title="Close notification" role="button">
+    <button class="btn-close btn-nostyle" (click)="onClose()" title="Close notification" role="button">
       X
     </button>
   </div>
