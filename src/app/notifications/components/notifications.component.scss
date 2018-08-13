@@ -1,13 +1,10 @@
 .notifications-wrapper {
   transition: all 200ms ease-in-out;
-  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   width: 100%;
-  top: 0;
-  left: 0;
   background: white;
   color: #000;
   min-height: 50px;
@@ -15,10 +12,25 @@
 
 .notification-content {
   width: 90%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   p {
     text-align: center;
     color: white;
     margin-bottom: 0;
+  }
+  ul {
+    margin-left: 15px;
+    li {
+      a,
+      button {
+        font-weight: bold;
+        color: whitesmoke;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
   }
 }
 
