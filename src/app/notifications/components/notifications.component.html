@@ -7,23 +7,23 @@
      }"
 >
   <div class="notification-content">
-    <p class="notification-msg">{{ data.message$ | async }}</p>
-    <ul class="notification-actions" *ngIf="data.actions">
+    <p class="notification-msg">{{ (data.message$ | async) || data.message }}</p>
+    <ul class="notification-actions list-nostyle" *ngIf="data.actions">
       <li *ngFor="let action of data.actions">
         <a *ngIf="action.type === 'link'"
            class="notification-link"
-           title="{{ action.text$ | async }}"
-           (click)="onClick($event, true)"
-           href="#"
+           [title]="(action.text$ | async) || action.text"
+           [href]="action.link"
+           (click)="onClick($event, false)"
         >
-          {{ action.text$ | async }}
+          {{ (action.text$ | async) || action.text }}
         </a>
         <button *ngIf="action.type === 'button'"
-                class="notification-btn"
-                title="{{ action.text$ | async }}"
+                class="notification-btn btn-nostyle"
+                [title]="(action.text$ | async) || action.text"
                 (click)="onClick($event, true)"
         >
-          {{ action.text$ | async }}
+          {{ (action.text$ | async) || action.text }}
         </button>
       </li>
     </ul>

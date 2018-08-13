@@ -20,19 +20,25 @@ export class NotificationsComponent extends UnsubscribeHelper implements OnInit 
   public data: NotificationsConfigModel;
   public close: EventEmitter<any>;
 
+  private timer: number;
+
   constructor(private notificationsService: NotificationsService, private renderer: Renderer2) {
     super();
     this.close = new EventEmitter<any>();
   }
 
   ngOnInit() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
     this.renderOptions();
+    this.notificationsService.isDisplayed = true;
     setTimeout(() => this.element.nativeElement.classList.add('in'), 0);
   }
 
   onClose(value: NotificationsActionModel = null) {
     this.element.nativeElement.classList.remove('in');
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.close.emit(value);
       this.notificationsService.isDisplayed = false;
     }, NOTIFICATION_ANIM_DURATION);
@@ -40,6 +46,10 @@ export class NotificationsComponent extends UnsubscribeHelper implements OnInit 
 
   onClick(event: MouseEvent, action: any) {
     event.preventDefault();
+    // link
+    if (!action) {
+      window.open((event.target as HTMLElement).getAttribute('href'), '_blank');
+    }
     this.onClose(action);
   }
 
